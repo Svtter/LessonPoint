@@ -1,0 +1,534 @@
+% Created 2015-01-11 Sun 13:23
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+\date{\today}
+\title{操作系统}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.4.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+知识提纲
+\section{操作系统概述}
+\label{sec-1}
+\subsection{操作系统的地位，作用，发展历史，特征，功能}
+\label{sec-1-1}
+\subsection{操作系统的分类及各类操作系统的特点}
+\label{sec-1-2}
+\subsection{常用的操作系统}
+\label{sec-1-3}
+\subsection{习题}
+\label{sec-1-4}
+\begin{itemize}
+\item 计算机操作系统方便用户，管理和控制计算机软硬件资源的系统软件。
+\end{itemize}
+\section{{\bfseries\sffamily TODO} 进程管理}
+\label{sec-2}
+\subsection{进程的概念，特性}
+\label{sec-2-1}
+进程是对正在运行的程序的一种抽象，是资源分配和独立运行的基本单位。
+\subsection{进程的状态及其转换（具有挂起状态）}
+\label{sec-2-2}
+\textbf{运行状态} - *阻塞状态*（静止阻塞，活动阻塞） - *就绪状态*（活动就绪，静止就绪）
+\begin{itemize}
+\item 特别的，无法从阻塞状态直接转换成运行状态
+\end{itemize}
+\subsection{PCB的作用，内容，组织方式}
+\label{sec-2-3}
+\begin{enumerate}
+\item 作用
+\label{sec-2-3-0-1}
+\begin{itemize}
+\item 为了保存进程的各个状态，建立专用数据结构，即为PCB
+\end{itemize}
+\item 内容
+\label{sec-2-3-0-2}
+\begin{itemize}
+\item 进程标识，位置信息，状态信息，进程的优先级，进程现场保护区，资源清单，队列指针等
+\end{itemize}
+\item 组织方式
+\label{sec-2-3-0-3}
+\begin{itemize}
+\item 线性表
+\item 链接表
+\item 索引表
+\end{itemize}
+\end{enumerate}
+\subsection{各种进程控制的原语（创建，终止，阻塞，唤醒，挂起）}
+\label{sec-2-4}
+原语指由若干条指令组成，不可被打断。
+\begin{enumerate}
+\item 创建
+\label{sec-2-4-0-1}
+申请空间 - 查找PCB表 - 分配PCB空间 - 分配资源 - 信息填入PCB - PCB插入就绪队列
+\item 终止
+\label{sec-2-4-0-2}
+找到PCB - 没有，进入异常处理 - 有，撤销PCB链中该进程的名字以及所有的子进程
+\item 阻塞
+\label{sec-2-4-0-3}
+中断CPU - 将CPU状态存入PCB - 进程状态转变为阻塞 - 插入等待队列 - 执行调度程序
+\item 唤醒
+\label{sec-2-4-0-4}
+唤醒条件满足 - PCB状态设置就绪，脱离阻塞队列 - 插入就绪队列
+\end{enumerate}
+\subsection{线程的概念，进程与线程的联系与区别}
+\label{sec-2-5}
+\begin{enumerate}
+\item 概念
+\label{sec-2-5-0-1}
+线程是进程中的一个实体，是被系统独立调度和分配的基本单位
+\item 联系区别
+\label{sec-2-5-0-2}
+\begin{enumerate}
+\item 调度
+\label{sec-2-5-0-2-1}
+      传统操作系统中，拥有资源的基本单位和独立调度的基本单位都是进程，而在引入线程的操作系统中，则把线程
+作为调度和分配的基本单位，而把进程作为拥有资源的基本单位，使传统进程的两个属性分开
+\item 并发性
+\label{sec-2-5-0-2-2}
+不仅进程之间可以并发执行，一个进程的多个线程也可以并发执行
+\item 拥有资源
+\label{sec-2-5-0-2-3}
+线程不拥有系统资源，但可以访问隶属进程的其他资源
+\item 系统开销
+\label{sec-2-5-0-2-4}
+\end{enumerate}
+\end{enumerate}
+
+\subsection{进程同步的概念}
+\label{sec-2-6}
+异步环境下并发执行的进程：
+\begin{enumerate}
+\item 同步
+\label{sec-2-6-0-1}
+因直接制约而需要相互等待，相互合作，以达到各进程按相互协调的速度执行的过程，成为进程的同步
+\item 互斥
+\label{sec-2-6-0-2}
+因间接制约而导致交替执行的过程称为进程的互斥
+\end{enumerate}
+\subsection{临界资源，临界区的概念}
+\label{sec-2-7}
+某段时间内只能允许一个进程使用的资源称为临界资源，必须互斥执行的程序段称为某临界资源的临界区
+\begin{itemize}
+\item 进入区
+\begin{itemize}
+\item 临界区
+\end{itemize}
+\item 退出区
+\end{itemize}
+\subsection{同步机制原则}
+\label{sec-2-8}
+\begin{itemize}
+\item 空闲让进
+\item 忙则等待
+\item 有限等待
+\item 让权等待（不占用CPU资源），忙等待则占用CPU资源
+\end{itemize}
+\subsection{同步与互斥的各种方法（软件，硬件，信号量（集））}
+\label{sec-2-9}
+\begin{enumerate}
+\item 硬件方式
+\label{sec-2-9-0-1}
+\begin{itemize}
+\item 中断禁用
+\item 专用机器指令
+\end{itemize}
+\item 软件方式
+\label{sec-2-9-0-2}
+\begin{itemize}
+\item Dekker算法，Peterson算法 无法实现让权等待
+\end{itemize}
+\item 信号量, P/V操作
+\label{sec-2-9-0-3}
+\end{enumerate}
+
+\subsection{经典同步问题}
+\label{sec-2-10}
+\begin{enumerate}
+\item 生产者消费者问题
+\label{sec-2-10-0-1}
+\begin{enumerate}
+\item 生产者
+\label{sec-2-10-0-1-1}
+\begin{enumerate}
+\item 有无空位
+\item 锁资源
+\item 释放资源
+\item 增加可使用资源
+\end{enumerate}
+\item 消费者
+\label{sec-2-10-0-1-2}
+\begin{enumerate}
+\item 有无可使用资源
+\item 锁资源
+\item 释放资源
+\item 增加空位
+\end{enumerate}
+\end{enumerate}
+\item 读者写者问题
+\label{sec-2-10-0-2}
+\begin{enumerate}
+\item 读者
+\label{sec-2-10-0-2-1}
+\begin{enumerate}
+\item 锁资源
+\item 判断读者数量，以此判断是否锁写信号
+\item 释放锁
+\end{enumerate}
+\item 写者
+\label{sec-2-10-0-2-2}
+\begin{enumerate}
+\item 要求写信号
+\item 写资源
+\item 释放写信号
+\end{enumerate}
+\end{enumerate}
+\item 哲学家就餐问题
+\label{sec-2-10-0-3}
+\begin{itemize}
+\item 左右两边同时可以拿叉子的时候，才拿
+\item 奇数号（1,3）的哲学家先拿左边的叉子，偶数号（0,2,4）的科学家先拿右边的叉子。
+\end{itemize}
+\end{enumerate}
+\subsection{{\bfseries\sffamily TODO} 调度方式（抢占，非抢占式），类型（高，中，低）}
+\label{sec-2-11}
+\subsubsection{方式}
+\label{sec-2-11-1}
+抢占方式即新来的优先级高，则立即执行，对于原本的进程，保存其状态
+\subsubsection{{\bfseries\sffamily TODO} 类型}
+\label{sec-2-11-2}
+\subsection{各种调度算法（FCFS，SJF，RR，优先权法，多级反馈轮转）}
+\label{sec-2-12}
+\begin{enumerate}
+\item FCFS 先来先服务
+\label{sec-2-12-0-1}
+\item RR 时间片轮转
+\label{sec-2-12-0-2}
+\begin{itemize}
+\item 分配时间片段给任何一个进程
+\end{itemize}
+\item 短进程优先
+\label{sec-2-12-0-3}
+\begin{itemize}
+\item 时间短的进程优先执行
+\end{itemize}
+\item 高响应比优先
+\label{sec-2-12-0-4}
+\begin{itemize}
+\item 公式： 优先权 = （等待时间 + 要求服务时间） / 要求服务时间
+\item 需要计算响应比，会增加系统开销
+\end{itemize}
+
+\item 优先级法
+\label{sec-2-12-0-5}
+进程的类型，运行时间，作业的优先级。
+\item 多级反馈队列调度算法
+\label{sec-2-12-0-6}
+\begin{enumerate}
+\item 放在不同等级的队列上进行执行
+\item 在每一个队列上执行时间片轮转
+\end{enumerate}
+\end{enumerate}
+\subsection{死锁的概念，产生原因，必要条件，处理方法}
+\label{sec-2-13}
+\begin{enumerate}
+\item 概念
+\label{sec-2-13-0-1}
+某个进程提出资源申请的时候，有关进程无法在外力的协助下，永远分配不到必需的资源而无法继续运行。
+\item 产生原因
+\label{sec-2-13-0-2}
+\begin{enumerate}
+\item 系统提供的资源不能满足每个进程的使用需求
+\item 在多道程序运行时，进程推进顺序不合法。
+\end{enumerate}
+\item 必要条件
+\label{sec-2-13-0-3}
+\begin{enumerate}
+\item 互斥条件
+\item 不剥夺条件
+\item 请求且保持条件
+\item 环路等待条件
+\end{enumerate}
+\end{enumerate}
+
+\subsection{银行家算法，死锁定理}
+\label{sec-2-14}
+\begin{enumerate}
+\item 死锁定理
+\label{sec-2-14-0-1}
+当且仅当系统资源分配图是不可完全简化时，系统中有死锁。
+\begin{itemize}
+\item 特别的，可以完全简化的时候，系统成功结束，没有简化出来的进程就是参与死锁的进程
+\end{itemize}
+\item 银行家算法
+\label{sec-2-14-0-2}
+\begin{enumerate}
+\item 安全状态
+\label{sec-2-14-0-2-1}
+安全状态是指分配的资源，满足每个进程的资源的最大需求，则每个进程顺利完成。
+\item 简单理解
+\label{sec-2-14-0-2-2}
+简单理解为：进程执行前，判断系统是否有足够的进程分配给该进程使得该进程能够成功执行完毕
+\end{enumerate}
+\end{enumerate}
+\subsection{习题}
+\label{sec-2-15}
+
+\section{{\bfseries\sffamily TODO} 存储器管理}
+\label{sec-3}
+\subsection{连续分配，动态分配算法，回收算法}
+\label{sec-3-1}
+\subsubsection{连续存储管理}
+\label{sec-3-1-1}
+依次分配内存即可
+\subsubsection{动态分配算法}
+\label{sec-3-1-2}
+\begin{enumerate}
+\item 首次适应算法
+\label{sec-3-1-2-1}
+取第一个满足大小的空间
+\item 最佳适应算法
+\label{sec-3-1-2-2}
+取最接近的空间
+\item 最差适应算法
+\label{sec-3-1-2-3}
+取最不接近的空间（远大于所需量的空间）
+\end{enumerate}
+\subsubsection{回收算法}
+\label{sec-3-1-3}
+回收以后，指针如何移动的问题。书上没有，参考相关图
+
+\subsection{地址重定位的概念，紧凑}
+\label{sec-3-2}
+\subsubsection{概念}
+\label{sec-3-2-1}
+把用户程序装入内存时，对有关指令的逻辑地址部分的修改称为地址重地位。
+\subsubsection{紧凑}
+\label{sec-3-2-2}
+    经过一段时间的使用之后，内存中存在大量的碎片，于是需要紧凑处理。移动各用户分区中的程序，使他们集中于内存的一端，
+使碎片集中于另一端，从而将空闲的碎片连成一个较大的分区，供需求作业使用，为此，必须采用动态重定位技术。
+\subsection{{\bfseries\sffamily TODO} 页式，段式，段页式管理方式，数据结构，地址变换过程}
+\label{sec-3-3}
+\subsubsection{分页式}
+\label{sec-3-3-1}
+\begin{enumerate}
+\item 分配与回收
+\label{sec-3-3-1-1}
+位图法，链表法
+\item 地址重定位
+\label{sec-3-3-1-2}
+\end{enumerate}
+
+\subsubsection{段式}
+\label{sec-3-3-2}
+\subsubsection{段页式}
+\label{sec-3-3-3}
+\subsubsection{数据结构}
+\label{sec-3-3-4}
+\subsubsection{地址变换过程}
+\label{sec-3-3-5}
+\subsection{可重入码的概念}
+\label{sec-3-4}
+也称纯代码，是一种允许多个进程同时访问的代码（函数式编程）
+\subsection{{\bfseries\sffamily TODO} 虚存的概念，虚存的实现方式}
+\label{sec-3-5}
+\subsubsection{概念}
+\label{sec-3-5-1}
+把内存与外存统一起来，形成一个存储器。
+\subsubsection{实现方式}
+\label{sec-3-5-2}
+请求页式存储管理
+\subsubsection{{\bfseries\sffamily TODO} 流程}
+\label{sec-3-5-3}
+\subsection{{\bfseries\sffamily TODO} 各种页面置换算法及实现方式（FIFO，LRU，CLOCK）}
+\label{sec-3-6}
+\subsubsection{OPT 最优算法}
+\label{sec-3-6-1}
+\subsubsection{{\bfseries\sffamily TODO} FIFO 先进先出算法}
+\label{sec-3-6-2}
+\subsubsection{{\bfseries\sffamily TODO} LRU 最近最久未使用算法}
+\label{sec-3-6-3}
+\subsubsection{{\bfseries\sffamily TODO} CLOCK 时钟算法}
+\label{sec-3-6-4}
+\subsection{工作集的概念}
+\label{sec-3-7}
+一个进程当前正在使用的页面的集合
+\subsection{习题}
+\label{sec-3-8}
+
+\section{{\bfseries\sffamily TODO} 文件系统}
+\label{sec-4}
+\subsection{文件的概念}
+\label{sec-4-1}
+存储在外部存储介质上的，具有符号名的一组相关信息的集合
+\subsection{{\bfseries\sffamily TODO} 文件的逻辑结构，物理结构，存取方法}
+\label{sec-4-2}
+\subsubsection{逻辑结构}
+\label{sec-4-2-1}
+\begin{enumerate}
+\item 记录式文件
+\label{sec-4-2-1-1}
+记录式文件在逻辑上总是被看成一组顺序的记录集合，是一种有结构的文件组织，又分成定长记录文件和变长记录文件
+\item 流式文件
+\label{sec-4-2-1-2}
+流式文件又称为无结构文件，文件内部不划分记录，文件内部是由一组相关信息组合成的有序字符流，这种文件的长度直接按字节计算
+\end{enumerate}
+\subsubsection{{\bfseries\sffamily TODO} 物理结构}
+\label{sec-4-2-2}
+\begin{enumerate}
+\item 顺序文件
+\label{sec-4-2-2-1}
+\item 链接文件
+\label{sec-4-2-2-2}
+\item 索引文件
+\label{sec-4-2-2-3}
+\item 多级索引文件
+\label{sec-4-2-2-4}
+\end{enumerate}
+\subsubsection{{\bfseries\sffamily TODO} 存取方法}
+\label{sec-4-2-3}
+\begin{enumerate}
+\item 顺序存取方式
+\label{sec-4-2-3-1}
+\item 随机存取方式
+\label{sec-4-2-3-2}
+\end{enumerate}
+\subsection{文件控制块，索引节点，树型目录结构}
+\label{sec-4-3}
+\subsubsection{文件控制块}
+\label{sec-4-3-1}
+文件的文件目录项又称为文件控制块。（FCB）
+\begin{enumerate}
+\item 有关文件存取控制信息
+\label{sec-4-3-1-1}
+\item 文件结构信息
+\label{sec-4-3-1-2}
+\item 文件使用信息
+\label{sec-4-3-1-3}
+\item 文件管理信息
+\label{sec-4-3-1-4}
+\end{enumerate}
+\subsubsection{索引节点}
+\label{sec-4-3-2}
+\begin{enumerate}
+\item 概念
+\label{sec-4-3-2-1}
+    为了减少检索文件访问的物理块数，UNIX文件系统把文件目录项中的文件名和其他管理信息分开，后者单独组成定长的数据结构， 
+称为*索引节点*，也称i节点。文件目录项组成的目录文件与普通文件一样对待，存储在文件存储器中。 
+\item i节点表
+\label{sec-4-3-2-2}
+     文件存储器上的每一个文件，都有一个外存文件控制块（又称外存索引节点）i节点与之对应，这些i节点被集中存放在文件存储器的i节点区。
+在使用的时候，内存会针对其建立一个内存i节点表（活动文件控制块或者活动i节点表）。
+\item 使用i节点表的流程
+\label{sec-4-3-2-3}
+     使用一个文件，如果在活动i节点表中找不到其对应的i节点时，就申请一个内存i节点，把外存i节点的内容复制到内存i节点中，随之就使用
+这个内存i节点来控制文件的读写。通常，最后一个用户关闭此文件后，内存i节点的内容被写到外存i节点中，然后，释放内存i节点。
+\end{enumerate}
+\subsubsection{树型目录结构}
+\label{sec-4-3-3}
+\begin{enumerate}
+\item 方便用户查找文件，又可以把不同类型和用途的文件分类
+\item 允许文件重名
+\item 利用树型结构关系，可以更方便的制定保护文件的存取权限，有利于文件的保护
+\item 不能直接支持文件或目录的共享
+\end{enumerate}
+\subsection{{\bfseries\sffamily TODO} 建立目录的过程，目录查询技术}
+\label{sec-4-4}
+\subsection{{\bfseries\sffamily TODO} 文件共享与保护措施}
+\label{sec-4-5}
+\subsubsection{文件共享}
+\label{sec-4-5-1}
+\subsubsection{保护措施}
+\label{sec-4-5-2}
+\begin{enumerate}
+\item 口令
+\label{sec-4-5-2-1}
+\item 加密
+\label{sec-4-5-2-2}
+\item 访问控制
+\label{sec-4-5-2-3}
+\end{enumerate}
+\subsection{{\bfseries\sffamily TODO} 文件的打开过程，打开的作用，读写过程}
+\label{sec-4-6}
+\subsection{{\bfseries\sffamily TODO} 外存分配方式（连续式，链接式，索引式）}
+\label{sec-4-7}
+\subsection{{\bfseries\sffamily TODO} 文件存储空间管理（表，链，位示图，成组链接）}
+\label{sec-4-8}
+\subsection{{\bfseries\sffamily TODO} 改善文件系统性能的方法}
+\label{sec-4-9}
+硬盘
+\subsection{{\bfseries\sffamily TODO} 文件系统应该具备的主要功能}
+\label{sec-4-10}
+
+\section{{\bfseries\sffamily TODO} 设备管理}
+\label{sec-5}
+\subsection{TODOO控制方式（程序，中断，直接存储器存取，通道）}
+\label{sec-5-1}
+\subsection{TODO入输出硬件组织}
+\label{sec-5-2}
+\subsection{TODO入输出软件组织及各层次的处理过程}
+\label{sec-5-3}
+\subsection{TODO冲区的管理方式}
+\label{sec-5-4}
+\subsection{TODO备分配流程}
+\label{sec-5-5}
+\subsection{TODOOOLing技术}
+\label{sec-5-6}
+\subsection{TODO备独立性及实现}
+\label{sec-5-7}
+\subsection{TODO盘存储器管理}
+\label{sec-5-8}
+\subsubsection{磁算法}
+\label{sec-5-8-1}
+
+\section{{\bfseries\sffamily TODO} 安全与保护}
+\label{sec-6}
+\subsection{口令的身份认证}
+\label{sec-6-1}
+口令保护容易理解，也容易实现。
+\begin{itemize}
+\item 口令的选择策略，内部存储，有效期和限制登录尝试次数等方面加强口令机制的安全
+\end{itemize}
+\subsection{访问控制技术}
+\label{sec-6-2}
+\subsubsection{访问控制矩阵（访问表）}
+\label{sec-6-2-1}
+\subsubsection{访问权限表}
+\label{sec-6-2-2}
+\subsubsection{保护域}
+\label{sec-6-2-3}
+\subsection{{\bfseries\sffamily TODO} 没有绝对安全的系统}
+\label{sec-6-3}
+\section{Task}
+\label{sec-7}
+\subsection{{\bfseries\sffamily TODO} 试卷的完成}
+\label{sec-7-1}
+\subsection{{\bfseries\sffamily TODO} 页面置换算法}
+\label{sec-7-2}
+\subsection{{\bfseries\sffamily TODO} 磁盘调度算法}
+\label{sec-7-3}
+\subsection{{\bfseries\sffamily TODO} 相应的题目}
+\label{sec-7-4}
+% Emacs 24.4.1 (Org mode 8.2.10)
+\end{document}
