@@ -1,4 +1,4 @@
-% Created 2015-01-11 Sun 13:23
+% Created 2015-01-11 Sun 17:12
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -30,7 +30,7 @@
 \tableofcontents
 
 知识提纲
-\section{操作系统概述}
+\section{{\bfseries\sffamily TODO} 操作系统概述}
 \label{sec-1}
 \subsection{操作系统的地位，作用，发展历史，特征，功能}
 \label{sec-1-1}
@@ -38,7 +38,7 @@
 \label{sec-1-2}
 \subsection{常用的操作系统}
 \label{sec-1-3}
-\subsection{习题}
+\subsection{{\bfseries\sffamily TODO} 习题}
 \label{sec-1-4}
 \begin{itemize}
 \item 计算机操作系统方便用户，管理和控制计算机软硬件资源的系统软件。
@@ -292,7 +292,7 @@
 简单理解为：进程执行前，判断系统是否有足够的进程分配给该进程使得该进程能够成功执行完毕
 \end{enumerate}
 \end{enumerate}
-\subsection{习题}
+\subsection{{\bfseries\sffamily TODO} 习题}
 \label{sec-2-15}
 
 \section{{\bfseries\sffamily TODO} 存储器管理}
@@ -328,26 +328,70 @@
 \label{sec-3-2-2}
     经过一段时间的使用之后，内存中存在大量的碎片，于是需要紧凑处理。移动各用户分区中的程序，使他们集中于内存的一端，
 使碎片集中于另一端，从而将空闲的碎片连成一个较大的分区，供需求作业使用，为此，必须采用动态重定位技术。
-\subsection{{\bfseries\sffamily TODO} 页式，段式，段页式管理方式，数据结构，地址变换过程}
+\subsection{页式，段式，段页式管理方式，数据结构，地址变换过程}
 \label{sec-3-3}
 \subsubsection{分页式}
 \label{sec-3-3-1}
 \begin{enumerate}
-\item 分配与回收
+\item 概念
 \label{sec-3-3-1-1}
+通过查页表补全块号，构成实际地址
+\item 分配与回收
+\label{sec-3-3-1-2}
 位图法，链表法
 \item 地址重定位
-\label{sec-3-3-1-2}
+\label{sec-3-3-1-3}
+\textbf{页内地址的长度由页大小决定}, 逻辑地址由硬件分成的两部分页号p和页内地址w。例如：页大小1KB，则逻辑地址的低10位（\$2$^{\text{10}}$ = 1KB\$）为页内地址
+\begin{table}[htb]
+\caption{逻辑地址}
+\centering
+\begin{tabular}{ll}
+页号p(6位) & 页内地址w（10位）\\
+\end{tabular}
+\end{table}
+\item 具体过程
+\label{sec-3-3-1-4}
 \end{enumerate}
-
 \subsubsection{段式}
 \label{sec-3-3-2}
-\subsubsection{段页式}
+\begin{enumerate}
+\item 概念
+\label{sec-3-3-2-1}
+以段为基本单位分配内存，每一段必须分配连续的内存空间，单各段之间不要求连续。
+\begin{center}
+\begin{tabular}{ll}
+段号S & 段内位移W\\
+\end{tabular}
+\end{center}
+\item 地址重定位
+\label{sec-3-3-2-2}
+检查段号，查段表，得出内存初始地址，与段内位移相加，得出物理地址
+\end{enumerate}
+\subsubsection{区别}
 \label{sec-3-3-3}
-\subsubsection{数据结构}
+\begin{enumerate}
+\item 页是信息的物理单位，段是信息的逻辑单位。页减少外部碎片。
+\item 分页式存储管理的作业地址空间是一维的，分段是二维的。
+\item 页的大小固定，段的长度不定。
+\item 分页的优点体现在内存空间的管理上，分段体现在地址空间的管理上
+\end{enumerate}
+\subsubsection{段页式}
 \label{sec-3-3-4}
-\subsubsection{地址变换过程}
-\label{sec-3-3-5}
+\begin{enumerate}
+\item 管理方式
+\label{sec-3-3-4-1}
+\begin{enumerate}
+\item \textbf{先分段} 作业地址空间进行段式管理
+\item \textbf{后分页} 每段内在分成若干大小固定的页
+\item 物理块大小
+\item 分为三个部分
+\begin{center}
+\begin{tabular}{lll}
+段号(s) & 段内页号(p) & 页内位移(d)\\
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{enumerate}
 \subsection{可重入码的概念}
 \label{sec-3-4}
 也称纯代码，是一种允许多个进程同时访问的代码（函数式编程）
@@ -361,20 +405,23 @@
 请求页式存储管理
 \subsubsection{{\bfseries\sffamily TODO} 流程}
 \label{sec-3-5-3}
-\subsection{{\bfseries\sffamily TODO} 各种页面置换算法及实现方式（FIFO，LRU，CLOCK）}
+\subsection{各种页面置换算法及实现方式（FIFO，LRU，CLOCK）}
 \label{sec-3-6}
 \subsubsection{OPT 最优算法}
 \label{sec-3-6-1}
-\subsubsection{{\bfseries\sffamily TODO} FIFO 先进先出算法}
+\subsubsection{FIFO 先进先出算法}
 \label{sec-3-6-2}
-\subsubsection{{\bfseries\sffamily TODO} LRU 最近最久未使用算法}
+最先淘汰那些驻留在内存时间最长的页面。
+\subsubsection{LRU 最近最久未使用算法}
 \label{sec-3-6-3}
-\subsubsection{{\bfseries\sffamily TODO} CLOCK 时钟算法}
+一直未被使用的页面最先淘汰
+\subsubsection{CLOCK 时钟算法}
 \label{sec-3-6-4}
+\textbf{判断页面的R位} 如果R位为0，置换页面；如果R位为1，清除R位，前移指针
 \subsection{工作集的概念}
 \label{sec-3-7}
 一个进程当前正在使用的页面的集合
-\subsection{习题}
+\subsection{{\bfseries\sffamily TODO} 习题}
 \label{sec-3-8}
 
 \section{{\bfseries\sffamily TODO} 文件系统}
@@ -382,7 +429,7 @@
 \subsection{文件的概念}
 \label{sec-4-1}
 存储在外部存储介质上的，具有符号名的一组相关信息的集合
-\subsection{{\bfseries\sffamily TODO} 文件的逻辑结构，物理结构，存取方法}
+\subsection{文件的逻辑结构，物理结构，存取方法}
 \label{sec-4-2}
 \subsubsection{逻辑结构}
 \label{sec-4-2-1}
@@ -394,25 +441,59 @@
 \label{sec-4-2-1-2}
 流式文件又称为无结构文件，文件内部不划分记录，文件内部是由一组相关信息组合成的有序字符流，这种文件的长度直接按字节计算
 \end{enumerate}
-\subsubsection{{\bfseries\sffamily TODO} 物理结构}
+\subsubsection{物理结构}
 \label{sec-4-2-2}
 \begin{enumerate}
 \item 顺序文件
 \label{sec-4-2-2-1}
+\begin{enumerate}
+\item 概念
+\label{sec-4-2-2-1-1}
+把一个逻辑上连续的文件存放在连续编号的物理块中。
+\item 缺点
+\label{sec-4-2-2-1-2}
+\begin{itemize}
+\item 建立时就要确定其长度
+\item 不便于文件的动态扩充
+\item 可能出现外部碎片
+\end{itemize}
+\end{enumerate}
 \item 链接文件
 \label{sec-4-2-2-2}
+\begin{enumerate}
+\item 概念
+\label{sec-4-2-2-2-1}
+逻辑上连续的文件，分散地存放在不同的物理块中。
+\item 特点
+\label{sec-4-2-2-2-2}
+\begin{enumerate}
+\item 仅适于对信息的顺序访问，不利于对文件的随机存取
+\item 每个物理块上增加了一个连接字，为信息管理添加了麻烦
+\end{enumerate}
+\end{enumerate}
 \item 索引文件
 \label{sec-4-2-2-3}
+\begin{enumerate}
+\item 概念
+\label{sec-4-2-2-3-1}
+系统为每个文件建立一个索引表，其中的表项指出该文件的各个物理块号。
+\item 特点
+\label{sec-4-2-2-3-2}
+具有多种优点，但是需要内存来提高速度
+\end{enumerate}
 \item 多级索引文件
 \label{sec-4-2-2-4}
+盘块号指向盘块号，从而扩大文件索引范围
 \end{enumerate}
-\subsubsection{{\bfseries\sffamily TODO} 存取方法}
+\subsubsection{存取方法}
 \label{sec-4-2-3}
 \begin{enumerate}
 \item 顺序存取方式
 \label{sec-4-2-3-1}
+按照逻辑顺序一次读取文件内容
 \item 随机存取方式
 \label{sec-4-2-3-2}
+根据需要存取文件中的任何块和记录，先对文件进行选点（seek），到达指令位置再开始读写。
 \end{enumerate}
 \subsection{文件控制块，索引节点，树型目录结构}
 \label{sec-4-3}
@@ -434,15 +515,15 @@
 \begin{enumerate}
 \item 概念
 \label{sec-4-3-2-1}
-    为了减少检索文件访问的物理块数，UNIX文件系统把文件目录项中的文件名和其他管理信息分开，后者单独组成定长的数据结构， 
+为了减少检索文件访问的物理块数，UNIX文件系统把文件目录项中的文件名和其他管理信息分开，后者单独组成定长的数据结构， 
 称为*索引节点*，也称i节点。文件目录项组成的目录文件与普通文件一样对待，存储在文件存储器中。 
 \item i节点表
 \label{sec-4-3-2-2}
-     文件存储器上的每一个文件，都有一个外存文件控制块（又称外存索引节点）i节点与之对应，这些i节点被集中存放在文件存储器的i节点区。
+文件存储器上的每一个文件，都有一个外存文件控制块（又称外存索引节点）i节点与之对应，这些i节点被集中存放在文件存储器的i节点区。
 在使用的时候，内存会针对其建立一个内存i节点表（活动文件控制块或者活动i节点表）。
 \item 使用i节点表的流程
 \label{sec-4-3-2-3}
-     使用一个文件，如果在活动i节点表中找不到其对应的i节点时，就申请一个内存i节点，把外存i节点的内容复制到内存i节点中，随之就使用
+使用一个文件，如果在活动i节点表中找不到其对应的i节点时，就申请一个内存i节点，把外存i节点的内容复制到内存i节点中，随之就使用
 这个内存i节点来控制文件的读写。通常，最后一个用户关闭此文件后，内存i节点的内容被写到外存i节点中，然后，释放内存i节点。
 \end{enumerate}
 \subsubsection{树型目录结构}
@@ -453,9 +534,22 @@
 \item 利用树型结构关系，可以更方便的制定保护文件的存取权限，有利于文件的保护
 \item 不能直接支持文件或目录的共享
 \end{enumerate}
-\subsection{{\bfseries\sffamily TODO} 建立目录的过程，目录查询技术}
+\subsection{建立目录的过程，目录查询技术}
 \label{sec-4-4}
-\subsection{{\bfseries\sffamily TODO} 文件共享与保护措施}
+\subsubsection{建立目录的过程}
+\label{sec-4-4-1}
+建立文件控制块FCB，标识目录文件，赋予目录文件信息，写入磁盘
+\subsubsection{目录查询技术}
+\label{sec-4-4-2}
+\begin{enumerate}
+\item 线性检索法
+\label{sec-4-4-2-1}
+在单级目录中，利用用户提供的文件名，用顺序查找法从文件目录表中找到指名文件的目录项
+\item Hash方法
+\label{sec-4-4-2-2}
+windows中的建立索引
+\end{enumerate}
+\subsection{文件共享与保护措施}
 \label{sec-4-5}
 \subsubsection{文件共享}
 \label{sec-4-5-1}
@@ -469,40 +563,156 @@
 \item 访问控制
 \label{sec-4-5-2-3}
 \end{enumerate}
-\subsection{{\bfseries\sffamily TODO} 文件的打开过程，打开的作用，读写过程}
+\subsection{文件的打开过程，打开的作用，读写过程}
 \label{sec-4-6}
-\subsection{{\bfseries\sffamily TODO} 外存分配方式（连续式，链接式，索引式）}
+\subsubsection{打开过程}
+\label{sec-4-6-1}
+\begin{itemize}
+\item 在目录上寻找该文件
+\item 活动i节点表增加该文件，（为该文件建立内存，从磁盘读入）
+\item PCB获取inode
+\end{itemize}
+\subsubsection{打开的作用}
+\label{sec-4-6-2}
+减少磁盘I/O，加快运行速度
+\subsubsection{读写过程}
+\label{sec-4-6-3}
+读写都在内存中进行，通过inode确认文件（一个文件有唯一的一个inode），在最后一个用户完成操作后，写入磁盘
+\subsection{外存分配方式（连续式，链接式，索引式）}
 \label{sec-4-7}
+\subsubsection{连续式}
+\label{sec-4-7-1}
+每一个文件占据了一个完整且连续的磁盘区域，但是会产生碎片
+\subsubsection{链接式}
+\label{sec-4-7-2}
+没有外部碎片，但是磁盘读写速度较低，需要来回移动磁头寻找磁道，必须为指针分配空间
+\subsubsection{索引式}
+\label{sec-4-7-3}
+每个文件都有一个索引块。
+\subsubsection{组合空间分配}
+\label{sec-4-7-4}
+一般盘块号为4byte，盘块大小为1K，由此计算出最多存放256个盘块号。
 \subsection{{\bfseries\sffamily TODO} 文件存储空间管理（表，链，位示图，成组链接）}
 \label{sec-4-8}
-\subsection{{\bfseries\sffamily TODO} 改善文件系统性能的方法}
+\subsubsection{空闲表}
+\label{sec-4-8-1}
+系统为外存上的所有空闲区建立一张空闲表，分配方法与内存的动态分配相似
+\subsubsection{{\bfseries\sffamily TODO} 空闲链表}
+\label{sec-4-8-2}
+空闲表块链和区链
+\subsubsection{位示图法}
+\label{sec-4-8-3}
+\subsubsection{{\bfseries\sffamily TODO} 成组链接法}
+\label{sec-4-8-4}
+\begin{enumerate}
+\item 设置空闲盘块号栈
+\item 文件区中的所有空闲盘块
+\end{enumerate}
+\subsection{改善文件系统性能的方法}
 \label{sec-4-9}
-硬盘
-\subsection{{\bfseries\sffamily TODO} 文件系统应该具备的主要功能}
+\subsubsection{文件缓存}
+\label{sec-4-9-1}
+\subsubsection{提前读取}
+\label{sec-4-9-2}
+\subsubsection{减少磁臂移动}
+\label{sec-4-9-3}
+\subsection{文件系统应该具备的主要功能}
 \label{sec-4-10}
-
+\begin{enumerate}
+\item 对文件存储器空间进行组织和分配
+\item 负责文件的存储并对存入的文件进行保护和检索的系统
+\item \textbf{具体} 为用户建立文件，存入，读出文件，控制文件存取，撤销文件等。
+\end{enumerate}
+\subsection{{\bfseries\sffamily TODO} 习题}
+\label{sec-4-11}
 \section{{\bfseries\sffamily TODO} 设备管理}
 \label{sec-5}
-\subsection{TODOO控制方式（程序，中断，直接存储器存取，通道）}
+依据习题进行筛选
+\subsection{I/O控制方式（程序，中断，直接存储器存取，通道）}
 \label{sec-5-1}
-\subsection{TODO入输出硬件组织}
+\subsubsection{程序}
+\label{sec-5-1-1}
+不再使用
+\subsubsection{中断驱动}
+\label{sec-5-1-2}
+\subsubsection{DMA}
+\label{sec-5-1-3}
+\subsubsection{通道}
+\label{sec-5-1-4}
+\subsection{{\bfseries\sffamily TODO} 输入输出硬件组织}
 \label{sec-5-2}
-\subsection{TODO入输出软件组织及各层次的处理过程}
+\subsubsection{I/O设备}
+\label{sec-5-2-1}
+\subsubsection{{\bfseries\sffamily TODO} I/O控制器}
+\label{sec-5-2-2}
+\begin{enumerate}
+\item {\bfseries\sffamily TODO} 概念
+\label{sec-5-2-2-1}
+\item {\bfseries\sffamily TODO} 功能
+\label{sec-5-2-2-2}
+\end{enumerate}
+\subsubsection{I/O通道}
+\label{sec-5-2-3}
+\subsubsection{总线系统}
+\label{sec-5-2-4}
+\subsection{{\bfseries\sffamily TODO} 输入输出软件组织及各层次的处理过程}
 \label{sec-5-3}
-\subsection{TODO冲区的管理方式}
+\subsubsection{中断处理程序}
+\label{sec-5-3-1}
+\subsubsection{设备驱动程序}
+\label{sec-5-3-2}
+\subsubsection{设备独立性软件}
+\label{sec-5-3-3}
+\subsubsection{用户层的I/O软件}
+\label{sec-5-3-4}
+\subsection{{\bfseries\sffamily TODO} 缓冲区的管理方式}
 \label{sec-5-4}
-\subsection{TODO备分配流程}
+\subsubsection{单缓冲和双缓冲}
+\label{sec-5-4-1}
+\subsubsection{循环缓冲}
+\label{sec-5-4-2}
+\subsubsection{缓冲池}
+\label{sec-5-4-3}
+\subsection{{\bfseries\sffamily TODO} 设备分配流程}
 \label{sec-5-5}
-\subsection{TODOOOLing技术}
+\subsubsection{设备分配中的数据结构}
+\label{sec-5-5-1}
+\begin{enumerate}
+\item 设备控制表
+\label{sec-5-5-1-1}
+\item 控制器控制表
+\label{sec-5-5-1-2}
+\item 通道控制表
+\label{sec-5-5-1-3}
+\item 系统设备表
+\label{sec-5-5-1-4}
+\end{enumerate}
+\subsubsection{设备分配时应考虑的因素}
+\label{sec-5-5-2}
+\subsubsection{独占设备的分配程序}
+\label{sec-5-5-3}
+\subsection{SPOOLing技术}
 \label{sec-5-6}
-\subsection{TODO备独立性及实现}
+\subsubsection{概念}
+\label{sec-5-6-1}
+SPOOLing技术，是在多道程序设计中将一台独占设备改造为共享设备的一种行之有效的技术。
+\subsubsection{特点}
+\label{sec-5-6-2}
+\begin{enumerate}
+\item 提高了I/O速度
+\item 将独占设备改造为共享设备
+\item 实现了虚拟设备功能
+\end{enumerate}
+\subsection{{\bfseries\sffamily TODO} 设备独立性(无关性)及实现}
 \label{sec-5-7}
-\subsection{TODO盘存储器管理}
+\subsection{{\bfseries\sffamily TODO} 磁盘存储器管理}
 \label{sec-5-8}
-\subsubsection{磁算法}
+\subsubsection{磁盘性能}
 \label{sec-5-8-1}
+\subsubsection{磁盘调度}
+\label{sec-5-8-2}
 
-\section{{\bfseries\sffamily TODO} 安全与保护}
+\section{安全与保护}
 \label{sec-6}
 \subsection{口令的身份认证}
 \label{sec-6-1}
@@ -518,7 +728,7 @@
 \label{sec-6-2-2}
 \subsubsection{保护域}
 \label{sec-6-2-3}
-\subsection{{\bfseries\sffamily TODO} 没有绝对安全的系统}
+\subsection{没有绝对安全的系统}
 \label{sec-6-3}
 \section{Task}
 \label{sec-7}

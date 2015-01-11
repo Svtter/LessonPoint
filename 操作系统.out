@@ -1,0 +1,127 @@
+\BOOKMARK [1][-]{section.1}{TODO 操作系统概述}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{操作系统的地位，作用，发展历史，特征，功能}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{操作系统的分类及各类操作系统的特点}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{常用的操作系统}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{TODO 习题}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{TODO 进程管理}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{进程的概念，特性}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{进程的状态及其转换（具有挂起状态）}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{PCB的作用，内容，组织方式}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.4}{各种进程控制的原语（创建，终止，阻塞，唤醒，挂起）}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.5}{线程的概念，进程与线程的联系与区别}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.6}{进程同步的概念}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.7}{临界资源，临界区的概念}{section.2}% 13
+\BOOKMARK [2][-]{subsection.2.8}{同步机制原则}{section.2}% 14
+\BOOKMARK [2][-]{subsection.2.9}{同步与互斥的各种方法（软件，硬件，信号量（集））}{section.2}% 15
+\BOOKMARK [2][-]{subsection.2.10}{经典同步问题}{section.2}% 16
+\BOOKMARK [2][-]{subsection.2.11}{TODO 调度方式（抢占，非抢占式），类型（高，中，低）}{section.2}% 17
+\BOOKMARK [3][-]{subsubsection.2.11.1}{方式}{subsection.2.11}% 18
+\BOOKMARK [3][-]{subsubsection.2.11.2}{TODO 类型}{subsection.2.11}% 19
+\BOOKMARK [2][-]{subsection.2.12}{各种调度算法（FCFS，SJF，RR，优先权法，多级反馈轮转）}{section.2}% 20
+\BOOKMARK [2][-]{subsection.2.13}{死锁的概念，产生原因，必要条件，处理方法}{section.2}% 21
+\BOOKMARK [2][-]{subsection.2.14}{银行家算法，死锁定理}{section.2}% 22
+\BOOKMARK [2][-]{subsection.2.15}{TODO 习题}{section.2}% 23
+\BOOKMARK [1][-]{section.3}{TODO 存储器管理}{}% 24
+\BOOKMARK [2][-]{subsection.3.1}{连续分配，动态分配算法，回收算法}{section.3}% 25
+\BOOKMARK [3][-]{subsubsection.3.1.1}{连续存储管理}{subsection.3.1}% 26
+\BOOKMARK [3][-]{subsubsection.3.1.2}{动态分配算法}{subsection.3.1}% 27
+\BOOKMARK [3][-]{subsubsection.3.1.3}{回收算法}{subsection.3.1}% 28
+\BOOKMARK [2][-]{subsection.3.2}{地址重定位的概念，紧凑}{section.3}% 29
+\BOOKMARK [3][-]{subsubsection.3.2.1}{概念}{subsection.3.2}% 30
+\BOOKMARK [3][-]{subsubsection.3.2.2}{紧凑}{subsection.3.2}% 31
+\BOOKMARK [2][-]{subsection.3.3}{页式，段式，段页式管理方式，数据结构，地址变换过程}{section.3}% 32
+\BOOKMARK [3][-]{subsubsection.3.3.1}{分页式}{subsection.3.3}% 33
+\BOOKMARK [3][-]{subsubsection.3.3.2}{段式}{subsection.3.3}% 34
+\BOOKMARK [3][-]{subsubsection.3.3.3}{区别}{subsection.3.3}% 35
+\BOOKMARK [3][-]{subsubsection.3.3.4}{段页式}{subsection.3.3}% 36
+\BOOKMARK [2][-]{subsection.3.4}{可重入码的概念}{section.3}% 37
+\BOOKMARK [2][-]{subsection.3.5}{TODO 虚存的概念，虚存的实现方式}{section.3}% 38
+\BOOKMARK [3][-]{subsubsection.3.5.1}{概念}{subsection.3.5}% 39
+\BOOKMARK [3][-]{subsubsection.3.5.2}{实现方式}{subsection.3.5}% 40
+\BOOKMARK [3][-]{subsubsection.3.5.3}{TODO 流程}{subsection.3.5}% 41
+\BOOKMARK [2][-]{subsection.3.6}{各种页面置换算法及实现方式（FIFO，LRU，CLOCK）}{section.3}% 42
+\BOOKMARK [3][-]{subsubsection.3.6.1}{OPT 最优算法}{subsection.3.6}% 43
+\BOOKMARK [3][-]{subsubsection.3.6.2}{FIFO 先进先出算法}{subsection.3.6}% 44
+\BOOKMARK [3][-]{subsubsection.3.6.3}{LRU 最近最久未使用算法}{subsection.3.6}% 45
+\BOOKMARK [3][-]{subsubsection.3.6.4}{CLOCK 时钟算法}{subsection.3.6}% 46
+\BOOKMARK [2][-]{subsection.3.7}{工作集的概念}{section.3}% 47
+\BOOKMARK [2][-]{subsection.3.8}{TODO 习题}{section.3}% 48
+\BOOKMARK [1][-]{section.4}{TODO 文件系统}{}% 49
+\BOOKMARK [2][-]{subsection.4.1}{文件的概念}{section.4}% 50
+\BOOKMARK [2][-]{subsection.4.2}{文件的逻辑结构，物理结构，存取方法}{section.4}% 51
+\BOOKMARK [3][-]{subsubsection.4.2.1}{逻辑结构}{subsection.4.2}% 52
+\BOOKMARK [3][-]{subsubsection.4.2.2}{物理结构}{subsection.4.2}% 53
+\BOOKMARK [3][-]{subsubsection.4.2.3}{存取方法}{subsection.4.2}% 54
+\BOOKMARK [2][-]{subsection.4.3}{文件控制块，索引节点，树型目录结构}{section.4}% 55
+\BOOKMARK [3][-]{subsubsection.4.3.1}{文件控制块}{subsection.4.3}% 56
+\BOOKMARK [3][-]{subsubsection.4.3.2}{索引节点}{subsection.4.3}% 57
+\BOOKMARK [3][-]{subsubsection.4.3.3}{树型目录结构}{subsection.4.3}% 58
+\BOOKMARK [2][-]{subsection.4.4}{建立目录的过程，目录查询技术}{section.4}% 59
+\BOOKMARK [3][-]{subsubsection.4.4.1}{建立目录的过程}{subsection.4.4}% 60
+\BOOKMARK [3][-]{subsubsection.4.4.2}{目录查询技术}{subsection.4.4}% 61
+\BOOKMARK [2][-]{subsection.4.5}{文件共享与保护措施}{section.4}% 62
+\BOOKMARK [3][-]{subsubsection.4.5.1}{文件共享}{subsection.4.5}% 63
+\BOOKMARK [3][-]{subsubsection.4.5.2}{保护措施}{subsection.4.5}% 64
+\BOOKMARK [2][-]{subsection.4.6}{文件的打开过程，打开的作用，读写过程}{section.4}% 65
+\BOOKMARK [3][-]{subsubsection.4.6.1}{打开过程}{subsection.4.6}% 66
+\BOOKMARK [3][-]{subsubsection.4.6.2}{打开的作用}{subsection.4.6}% 67
+\BOOKMARK [3][-]{subsubsection.4.6.3}{读写过程}{subsection.4.6}% 68
+\BOOKMARK [2][-]{subsection.4.7}{外存分配方式（连续式，链接式，索引式）}{section.4}% 69
+\BOOKMARK [3][-]{subsubsection.4.7.1}{连续式}{subsection.4.7}% 70
+\BOOKMARK [3][-]{subsubsection.4.7.2}{链接式}{subsection.4.7}% 71
+\BOOKMARK [3][-]{subsubsection.4.7.3}{索引式}{subsection.4.7}% 72
+\BOOKMARK [3][-]{subsubsection.4.7.4}{组合空间分配}{subsection.4.7}% 73
+\BOOKMARK [2][-]{subsection.4.8}{TODO 文件存储空间管理（表，链，位示图，成组链接）}{section.4}% 74
+\BOOKMARK [3][-]{subsubsection.4.8.1}{空闲表}{subsection.4.8}% 75
+\BOOKMARK [3][-]{subsubsection.4.8.2}{TODO 空闲链表}{subsection.4.8}% 76
+\BOOKMARK [3][-]{subsubsection.4.8.3}{位示图法}{subsection.4.8}% 77
+\BOOKMARK [3][-]{subsubsection.4.8.4}{TODO 成组链接法}{subsection.4.8}% 78
+\BOOKMARK [2][-]{subsection.4.9}{改善文件系统性能的方法}{section.4}% 79
+\BOOKMARK [3][-]{subsubsection.4.9.1}{文件缓存}{subsection.4.9}% 80
+\BOOKMARK [3][-]{subsubsection.4.9.2}{提前读取}{subsection.4.9}% 81
+\BOOKMARK [3][-]{subsubsection.4.9.3}{减少磁臂移动}{subsection.4.9}% 82
+\BOOKMARK [2][-]{subsection.4.10}{文件系统应该具备的主要功能}{section.4}% 83
+\BOOKMARK [2][-]{subsection.4.11}{TODO 习题}{section.4}% 84
+\BOOKMARK [1][-]{section.5}{TODO 设备管理}{}% 85
+\BOOKMARK [2][-]{subsection.5.1}{I/O控制方式（程序，中断，直接存储器存取，通道）}{section.5}% 86
+\BOOKMARK [3][-]{subsubsection.5.1.1}{程序}{subsection.5.1}% 87
+\BOOKMARK [3][-]{subsubsection.5.1.2}{中断驱动}{subsection.5.1}% 88
+\BOOKMARK [3][-]{subsubsection.5.1.3}{DMA}{subsection.5.1}% 89
+\BOOKMARK [3][-]{subsubsection.5.1.4}{通道}{subsection.5.1}% 90
+\BOOKMARK [2][-]{subsection.5.2}{TODO 输入输出硬件组织}{section.5}% 91
+\BOOKMARK [3][-]{subsubsection.5.2.1}{I/O设备}{subsection.5.2}% 92
+\BOOKMARK [3][-]{subsubsection.5.2.2}{TODO I/O控制器}{subsection.5.2}% 93
+\BOOKMARK [3][-]{subsubsection.5.2.3}{I/O通道}{subsection.5.2}% 94
+\BOOKMARK [3][-]{subsubsection.5.2.4}{总线系统}{subsection.5.2}% 95
+\BOOKMARK [2][-]{subsection.5.3}{TODO 输入输出软件组织及各层次的处理过程}{section.5}% 96
+\BOOKMARK [3][-]{subsubsection.5.3.1}{中断处理程序}{subsection.5.3}% 97
+\BOOKMARK [3][-]{subsubsection.5.3.2}{设备驱动程序}{subsection.5.3}% 98
+\BOOKMARK [3][-]{subsubsection.5.3.3}{设备独立性软件}{subsection.5.3}% 99
+\BOOKMARK [3][-]{subsubsection.5.3.4}{用户层的I/O软件}{subsection.5.3}% 100
+\BOOKMARK [2][-]{subsection.5.4}{TODO 缓冲区的管理方式}{section.5}% 101
+\BOOKMARK [3][-]{subsubsection.5.4.1}{单缓冲和双缓冲}{subsection.5.4}% 102
+\BOOKMARK [3][-]{subsubsection.5.4.2}{循环缓冲}{subsection.5.4}% 103
+\BOOKMARK [3][-]{subsubsection.5.4.3}{缓冲池}{subsection.5.4}% 104
+\BOOKMARK [2][-]{subsection.5.5}{TODO 设备分配流程}{section.5}% 105
+\BOOKMARK [3][-]{subsubsection.5.5.1}{设备分配中的数据结构}{subsection.5.5}% 106
+\BOOKMARK [3][-]{subsubsection.5.5.2}{设备分配时应考虑的因素}{subsection.5.5}% 107
+\BOOKMARK [3][-]{subsubsection.5.5.3}{独占设备的分配程序}{subsection.5.5}% 108
+\BOOKMARK [2][-]{subsection.5.6}{SPOOLing技术}{section.5}% 109
+\BOOKMARK [3][-]{subsubsection.5.6.1}{概念}{subsection.5.6}% 110
+\BOOKMARK [3][-]{subsubsection.5.6.2}{特点}{subsection.5.6}% 111
+\BOOKMARK [2][-]{subsection.5.7}{TODO 设备独立性\(无关性\)及实现}{section.5}% 112
+\BOOKMARK [2][-]{subsection.5.8}{TODO 磁盘存储器管理}{section.5}% 113
+\BOOKMARK [3][-]{subsubsection.5.8.1}{磁盘性能}{subsection.5.8}% 114
+\BOOKMARK [3][-]{subsubsection.5.8.2}{磁盘调度}{subsection.5.8}% 115
+\BOOKMARK [1][-]{section.6}{安全与保护}{}% 116
+\BOOKMARK [2][-]{subsection.6.1}{口令的身份认证}{section.6}% 117
+\BOOKMARK [2][-]{subsection.6.2}{访问控制技术}{section.6}% 118
+\BOOKMARK [3][-]{subsubsection.6.2.1}{访问控制矩阵（访问表）}{subsection.6.2}% 119
+\BOOKMARK [3][-]{subsubsection.6.2.2}{访问权限表}{subsection.6.2}% 120
+\BOOKMARK [3][-]{subsubsection.6.2.3}{保护域}{subsection.6.2}% 121
+\BOOKMARK [2][-]{subsection.6.3}{没有绝对安全的系统}{section.6}% 122
+\BOOKMARK [1][-]{section.7}{Task}{}% 123
+\BOOKMARK [2][-]{subsection.7.1}{TODO 试卷的完成}{section.7}% 124
+\BOOKMARK [2][-]{subsection.7.2}{TODO 页面置换算法}{section.7}% 125
+\BOOKMARK [2][-]{subsection.7.3}{TODO 磁盘调度算法}{section.7}% 126
+\BOOKMARK [2][-]{subsection.7.4}{TODO 相应的题目}{section.7}% 127
